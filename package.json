@@ -1,0 +1,17 @@
+{
+  "name": "crud-book",
+  "version": "1.0.0",
+  "description": "Implementing CRUD operation",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch app.js"
+  },
+  "author": "Hema Dhami",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.15.6",
+    "sequelize": "^6.37.7"
+  }
+}
