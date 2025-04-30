@@ -1,15 +1,21 @@
 const express = require('express')
+const { books } = require('./database/connection')
+
 const app = express()
 require("./database/connection")
 
 
-app.get("/books",function(req,res){
+app.get("/books",async function(req,res){
+    //logic to fetch bboks from database
+    const datas = await books.findAll() //select * from books
     res.json({
-        message : "books fetched successfully"
+        message : "books fetched successfully",
+        datas
     })
 })
 
 app.post("/books",function(req,res){
+    //logic to add books from database
     res.json({
         message : "book added sucessfully"
     })
