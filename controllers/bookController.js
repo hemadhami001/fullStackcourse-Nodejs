@@ -29,13 +29,34 @@ exports.addBook = async function(req,res){
     })
 }
 
-exports.deleteBook = function(req,res){
+exports.deleteBook =async function(req,res){
+    // first hami kun book delete garne tesko id line
+    const id = req.params.id
+    // id paye paxi teslai delete garne
+    await books.destroy({
+        where : {
+            id : id    //key ra value same name ko xa vane simply 'id' matrai lekhda hunxa
+        }
+    }) //delete from given id
+  
     res.json({
         message : "book deleted successfully"
     })
 }
 
 exports.editBook = function(req,res){
+    // kun book update garnne tesko id line
+    const id =  req.params.id
+
+    //k k edit garne
+    const {bookName,bookPrice,bookAuthor,bookGenre} =req.body
+
+    books.update({bookName : bookName,bookPrice : bookPrice,bookAuthor : bookAuthor,bookGenre : bookGenre},{
+        where : {
+            id : id
+        }
+    })
+
     res.json({
         message : "book updated successfully"
     })
