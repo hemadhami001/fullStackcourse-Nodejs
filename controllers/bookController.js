@@ -2,31 +2,43 @@ const { where } = require("sequelize")
 const { books } = require("../database/connection")
 
 exports.fetchBooks = async function(req,res){
-    //logic to fetch bboks from database
-    const datas = await books.findAll() //select * from books
-    res.json({
-        message : "books fetched successfully",
-        datas    //datas : datas
-    })
+   try{
+     //logic to fetch bboks from database
+     const datas = await books.findAll() //select * from books
+     res.json({
+         message : "books fetched successfully",
+         datas    //datas : datas
+     })
+   }
+   catch
+    (error){
+        console.log("Something gone wrong")
+   }
 }
 
 exports.addBook = async function(req,res){
-    //logic to add books from database
-    console.log(req.body)
-    // const bookName = req.body.bookName
-    // const bookPrice = req.body.bookPrice
-
-    const {bookName,bookPrice,bookAuthor,bookGenre} =req.body
-   await books.create({
-        bookName : bookName, 
-        bookPrice : bookPrice,
-        bookAuthor : bookAuthor,
-        bookGenre : bookGenre
-         //colunmName : value
-    })
-    res.json({
-        message : "book added sucessfully"
-    })
+try {
+        //logic to add books from database
+        console.log(req.body)
+        // const bookName = req.body.bookName
+        // const bookPrice = req.body.bookPrice
+    
+        const {bookName,bookPrice,bookAuthor,bookGenre} =req.body
+       await books.create({
+            bookName : bookName, 
+            bookPrice : bookPrice,
+            bookAuthor : bookAuthor,
+            bookGenre : bookGenre
+             //colunmName : value
+        })
+        res.json({
+            message : "book added sucessfully"
+        })
+}
+catch
+(error){
+    console.log("Something went wrong")
+}
 }
 
 exports.deleteBook =async function(req,res){
